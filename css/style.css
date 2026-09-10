@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root{
+  --uf-blue:#143d59;
+  --uf-cyan:#1f9ac4;
+  --uf-bg:#f4f7fb;
+  --uf-card:#ffffff;
+  --uf-ink:#172333;
+  --uf-muted:#64748b;
+  --uf-line:#dbe4ef;
+  --uf-shadow:0 12px 35px rgba(16,39,66,.10);
+
+  /* Fund identity colors — validated 5-way categorical set */
+  --fund-sshf:#2a78d6;
+  --fund-cerf:#e0a800;
+  --fund-pbf:#8b4513;
+  --fund-rsrtf:#008300;
+  --fund-wphf:#e87ba4;
+
+  /* Sequential blue ramp (magnitude / choropleth) */
+  --seq-100:#cde2fb;
+  --seq-250:#86b6ef;
+  --seq-400:#3987e5;
+  --seq-550:#1c5cab;
+  --seq-700:#0d366b;
+  --seq-none:#eef2f7;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--uf-bg);
+  color:var(--uf-ink);
+  line-height:1.55;
+  font-size:14px;
+}
+img{max-width:100%;display:block}
+.uf-container{width:min(1500px,95vw);margin:0 auto}
+
+/* ---------- Hero ---------- */
+.uf-hero{
+  background:linear-gradient(135deg,#102f4a,#155b7a 55%,#1c9a8a);
+  color:#fff;
+  padding:38px 0;
+}
+.uf-hero-brand{display:flex;gap:24px;align-items:center}
+.uf-hero-logo{
+  flex-shrink:0;
+  background:#fff;
+  border-radius:18px;
+  padding:12px 18px;
+  box-shadow:0 10px 26px rgba(5,17,29,.32);
+  display:flex;align-items:center;justify-content:center;
+}
+.uf-hero-logo img{height:48px;width:auto;display:block}
+.uf-kicker{
+  text-transform:uppercase;letter-spacing:.12em;font-size:.74rem;font-weight:800;color:#bdefff;
+}
+.uf-hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(1.7rem,3vw,2.6rem);
+  line-height:1.1;
+  margin:6px 0 10px;
+}
+.uf-lead{font-size:.98rem;line-height:1.6;max-width:680px;color:#ecfeff}
+
+/* ---------- Global methodology disclaimer (shown above the tabs on every page) ---------- */
+.uf-disclaimer{
+  background:#fff8ea;border:1px solid #f0d493;border-radius:16px;
+  padding:12px 18px;margin:18px 0 6px;font-size:.86rem;line-height:1.55;color:#6b4a00;
+}
+.uf-disclaimer strong{color:#8a5a00}
+
+/* ---------- Tabs ---------- */
+.uf-main{padding:24px 0 60px}
+.uf-tabs{
+  display:flex;gap:8px;flex-wrap:wrap;
+  margin-bottom:20px;
+  position:sticky;top:0;z-index:20;
+  background:rgba(244,247,251,.94);
+  backdrop-filter:blur(8px);
+  padding:10px 0;
+}
+.uf-tab{
+  border:1px solid var(--uf-line);
+  background:#fff;
+  color:var(--uf-blue);
+  border-radius:999px;
+  padding:10px 16px;
+  font-weight:800;
+  font-size:.86rem;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.uf-tab .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.uf-tab.active{background:var(--uf-blue);color:#fff;border-color:var(--uf-blue)}
+.uf-tab:hover{transform:translateY(-1px);box-shadow:var(--uf-shadow)}
+
+/* ---------- Panels ---------- */
+.uf-panel{display:none}
+.uf-panel.active{display:block}
+.uf-section-heading{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin:6px 0 16px}
+.uf-section-heading h2{margin:4px 0 6px;font-size:1.4rem;color:var(--uf-blue);font-family:'Space Grotesk',sans-serif}
+.uf-section-heading p{color:var(--uf-muted);margin:0;max-width:640px}
+
+.uf-card{
+  background:var(--uf-card);
+  border:1px solid var(--uf-line);
+  border-radius:22px;
+  padding:18px;
+  box-shadow:var(--uf-shadow);
+  margin-bottom:20px;
+}
+.uf-card h3{margin:0 0 8px;color:var(--uf-blue);font-family:'Space Grotesk',sans-serif}
+.uf-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:14px}
+.uf-card-header p{color:var(--uf-muted);margin:0}
+.uf-card-actions{display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0}
+
+/* KPI row */
+.uf-kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:20px}
+.uf-kpi{
+  background:#fff;border:1px solid var(--uf-line);border-radius:20px;padding:16px;
+  box-shadow:var(--uf-shadow);position:relative;overflow:hidden;
+}
+.uf-kpi::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:linear-gradient(90deg,var(--uf-cyan),#1aa67a)}
+.uf-kpi-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--uf-muted);font-weight:800}
+.uf-kpi-value{font-size:1.5rem;font-weight:800;color:var(--uf-blue);margin-top:6px;font-family:'Space Grotesk',sans-serif}
+.uf-kpi-sub{font-size:.76rem;color:var(--uf-muted);margin-top:4px}
+
+/* Fund presence chip row */
+.uf-presence-row{display:flex;gap:10px;flex-wrap:wrap}
+.uf-presence-chip{
+  display:flex;align-items:center;gap:9px;
+  background:#f7fbfd;border:1px solid var(--uf-line);border-radius:16px;
+  padding:10px 14px;min-width:150px;
+  transition:border-color .15s ease, box-shadow .15s ease, opacity .15s ease;
+}
+.uf-presence-chip .swatch-dot{width:14px;height:14px;border-radius:5px;flex-shrink:0}
+.uf-presence-chip strong{display:block;font-size:1.1rem;color:var(--uf-blue);font-family:'Space Grotesk',sans-serif}
+.uf-presence-chip span{display:block;font-size:.72rem;color:var(--uf-muted);font-weight:700}
+.uf-presence-chip.active{border-color:var(--uf-blue);box-shadow:0 0 0 2px rgba(20,61,89,.14)}
+
+/* Slicers: State / County / UN Fund on the All Funds page */
+.uf-filter-bar{
+  display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;
+  padding:16px 18px;
+}
+.uf-filter-group{display:flex;flex-direction:column;gap:6px;min-width:170px;flex:1 1 170px}
+.uf-filter-group label{
+  font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;font-weight:800;color:var(--uf-muted);
+}
+.uf-filter-group select{
+  border:1px solid var(--uf-line);border-radius:12px;padding:10px 12px;
+  background:#f8fbff;color:var(--uf-ink);font-weight:700;font-size:.86rem;font-family:inherit;
+}
+.uf-filter-bar .uf-mini-btn{flex:0 0 auto}
+
+/* Projects / $ Value toggle — shared control on every panel's filter bar */
+.uf-metric-toggle{display:inline-flex;border:1px solid var(--uf-line);border-radius:12px;overflow:hidden;background:#f8fbff}
+.uf-metric-btn{
+  border:0;background:transparent;color:var(--uf-muted);padding:10px 14px;font-weight:800;font-size:.82rem;
+  cursor:pointer;font-family:inherit;transition:background .15s ease,color .15s ease;
+}
+.uf-metric-btn.active{background:var(--uf-blue);color:#fff}
+.uf-metric-btn:not(.active):hover{background:#eef2f7}
+
+/* Provisional / estimated-figure markers (RSRTF area mapping, CERF even split) */
+.uf-provisional-badge{
+  display:inline-block;background:#fff2d6;color:#8a5a00;border:1px solid #f0d493;border-radius:6px;
+  font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;padding:1px 5px;margin-left:5px;vertical-align:middle;
+}
+.uf-provisional-note{color:#8a5a00;font-size:.78rem;font-weight:700;background:#fff8ea !important;border:1px solid #f0d493 !important}
+p.uf-provisional-note{background:none !important;border:0 !important;padding:0}
+
+/* Fund-level $ that can't be pinned to a single county (nationwide, logistics, TBD) */
+.uf-unattributed-note{
+  margin-top:8px;font-size:.78rem;line-height:1.5;color:#8a5a00;background:#fff8ea;
+  border:1px solid #f0d493;border-radius:12px;padding:9px 12px;
+}
+
+.uf-legend-fund-chip{transition:opacity .15s ease,border-color .15s ease,box-shadow .15s ease}
+.uf-legend-fund-chip.muted{opacity:.35}
+.uf-legend-fund-chip.clickable{cursor:pointer;user-select:none}
+.uf-legend-fund-chip.clickable:hover{border-color:#93cfe4}
+.uf-legend-fund-chip.active{border-color:var(--uf-blue);box-shadow:0 0 0 2px rgba(20,61,89,.14);opacity:1}
+
+/* ---------- Map layout (full-width map card, drawer for county detail) ---------- */
+.uf-map-card{padding-bottom:16px}
+.uf-map{
+  position:relative;width:100%;
+  aspect-ratio:1.4/1;
+  min-height:420px;max-height:760px;
+  background:#fff;border:1px solid var(--uf-line);border-radius:18px;overflow:hidden;
+}
+.uf-shape-map{width:100%;height:100%;display:block;background:#fff;cursor:grab}
+.uf-shape-map:active{cursor:grabbing}
+.uf-county-shape{transition:fill .18s ease, opacity .18s ease, stroke-width .18s ease}
+.uf-county-shape:hover{stroke:#062f46 !important;stroke-width:2.2 !important}
+.uf-county-label{
+  font-size:8.6px;font-weight:800;fill:#ffffff;pointer-events:none;
+  paint-order:stroke;stroke:rgba(8,26,43,.9);stroke-width:3px;stroke-linejoin:round;
+}
+.uf-pie-arc{stroke:#ffffff;stroke-width:1.3px;cursor:pointer}
+.uf-value-glyph-circle{stroke:#ffffff;stroke-width:1.3px;cursor:pointer}
+.uf-pie-total-label{
+  font-size:11px;font-weight:800;fill:#0b2338;text-anchor:middle;dominant-baseline:central;
+  pointer-events:none;paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;
+  font-family:'Space Grotesk',sans-serif;
+}
+
+/* Zoom controls — floating +/- buttons over the map, bottom-right corner */
+.uf-map-zoom-controls{
+  position:absolute;right:14px;bottom:14px;z-index:6;
+  display:flex;flex-direction:column;gap:6px;
+}
+.uf-zoom-btn{
+  width:32px;height:32px;border-radius:9px;border:1px solid var(--uf-line);
+  background:#fff;color:var(--uf-blue);font-size:1.15rem;font-weight:900;line-height:1;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(16,39,66,.18);
+  transition:background .15s ease,border-color .15s ease,transform .15s ease;
+}
+.uf-zoom-btn:hover{background:#f7fbfd;border-color:#93cfe4;transform:translateY(-1px)}
+.uf-zoom-btn:active{transform:translateY(0)}
+
+.uf-map-tooltip{
+  position:absolute;display:none;z-index:10;max-width:280px;
+  background:rgba(5,31,48,.94);color:#fff;border-radius:12px;padding:11px 13px;
+  font-size:.8rem;line-height:1.5;box-shadow:0 10px 28px rgba(0,0,0,.25);pointer-events:none;
+}
+.uf-map-tooltip strong{font-size:.86rem}
+.uf-map-tooltip .tt-row{display:flex;justify-content:space-between;gap:14px;margin-top:2px}
+.uf-map-tooltip .tt-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+
+/* Compact horizontal legend strip below the full-width map — one line, not a stack */
+.uf-map-legend-row{
+  display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;
+  margin-top:14px;border-top:1px solid var(--uf-line);padding-top:12px;
+}
+.uf-map-legend-group{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.uf-map-legend-group h4{
+  margin:0;color:var(--uf-muted);font-family:'Space Grotesk',sans-serif;
+  font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;
+}
+.uf-map-legend-group .row-inline{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.uf-legend-swatch-chip{
+  display:inline-flex;align-items:center;gap:6px;background:#f7fbfd;border:1px solid var(--uf-line);
+  border-radius:999px;padding:5px 10px 5px 8px;font-size:.76rem;font-weight:700;color:#425b74;white-space:nowrap;
+}
+
+/* Drawer: slides in over the map when a county is selected */
+.uf-drawer{
+  position:absolute;top:0;right:0;height:100%;width:min(360px,88%);
+  background:#fff;border-left:1px solid var(--uf-line);
+  box-shadow:-14px 0 34px rgba(16,39,66,.18);
+  padding:20px 20px 20px 22px;
+  transform:translateX(105%);transition:transform .28s ease;
+  z-index:6;overflow-y:auto;
+}
+.uf-drawer.open{transform:translateX(0)}
+.uf-drawer h3{margin:0 0 12px;color:var(--uf-blue);font-family:'Space Grotesk',sans-serif;font-size:1.05rem}
+.uf-drawer-close{
+  position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;
+  border:1px solid var(--uf-line);background:#f7fbfd;color:var(--uf-blue);
+  font-size:1.1rem;line-height:1;cursor:pointer;display:grid;place-items:center;
+}
+.uf-drawer-close:hover{background:#eef2f7}
+.uf-drawer-empty{color:var(--uf-muted);font-size:.86rem;line-height:1.5}
+.uf-swatch{width:18px;height:14px;border-radius:4px;border:1px solid #d3dee7;display:inline-block;flex-shrink:0}
+.uf-legend-fund-chip{display:inline-flex;align-items:center;gap:6px;background:#f7fbfd;border:1px solid var(--uf-line);border-radius:999px;padding:5px 10px;font-size:.76rem;font-weight:800;color:#24435d}
+
+.uf-mini-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.uf-mini-metric{background:#f7fbfd;border:1px solid var(--uf-line);border-radius:16px;padding:12px}
+.uf-mini-metric strong{display:block;font-size:1.2rem;color:var(--uf-blue);font-family:'Space Grotesk',sans-serif}
+.uf-mini-metric span{font-size:.76rem;color:var(--uf-muted);font-weight:800;text-transform:uppercase;letter-spacing:.03em}
+.uf-mini-metric.wide{grid-column:1/-1}
+.uf-mini-btn{border:0;background:#e9f4f8;color:#0b4a63;border-radius:12px;padding:9px 12px;font-weight:800;font-size:.82rem;cursor:pointer}
+
+/* ---------- Table ---------- */
+.uf-table-wrap{overflow:auto;border:1px solid var(--uf-line);border-radius:16px}
+.uf-table{width:100%;border-collapse:collapse;background:#fff;min-width:760px}
+.uf-table th{background:var(--uf-blue);color:#fff;text-align:left;font-size:.76rem;padding:11px;position:sticky;top:0;letter-spacing:.02em}
+.uf-table td{border-top:1px solid #edf2f7;padding:10px 11px;font-size:.84rem;vertical-align:top}
+.uf-table tr:hover td{background:#f7fbfd}
+.uf-table th.num{text-align:right;width:1%;white-space:nowrap}
+.uf-table td.num{text-align:right;font-weight:800;color:var(--uf-blue);font-family:'Space Grotesk',sans-serif;white-space:nowrap}
+.uf-chip{
+  display:inline-flex;align-items:center;gap:5px;border-radius:999px;background:#eef7fb;color:#0b4a63;
+  padding:3px 8px;font-size:.72rem;font-weight:800;margin:2px 3px 2px 0;white-space:nowrap;
+}
+.uf-chip .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+
+/* ---------- Cross-fund county overlap bar chart ---------- */
+.uf-overlap-legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.uf-overlap-bars{display:grid;gap:14px;max-height:640px;overflow-y:auto;padding-right:4px}
+.uf-overlap-group{
+  background:#f7fbfd;border:1px solid var(--uf-line);border-radius:16px;
+  padding:14px 16px;display:grid;gap:9px;
+  transition:box-shadow .15s ease, border-color .15s ease;
+}
+.uf-overlap-group:hover{box-shadow:var(--uf-shadow);border-color:#cfe0ec}
+.uf-overlap-group-label{
+  font-weight:800;color:var(--uf-blue);font-size:.92rem;font-family:'Space Grotesk',sans-serif;
+}
+.uf-overlap-bar-row{display:grid;grid-template-columns:74px 1fr;gap:12px;align-items:center}
+.uf-overlap-bar-tag{
+  flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:3px 9px;
+  color:#fff;font-size:.66rem;font-weight:900;text-transform:uppercase;letter-spacing:.03em;
+  box-shadow:0 1px 2px rgba(16,39,66,.18);
+}
+.uf-overlap-bar-track{
+  position:relative;height:18px;display:flex;align-items:center;
+  background:transparent;border:0;border-radius:5px;overflow:visible;
+}
+.uf-overlap-bar-fill{
+  height:100%;border-radius:0 5px 5px 0;flex:0 0 auto;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35);
+  transition:width .25s ease;
+}
+.uf-overlap-bar-value{
+  flex:0 0 auto;margin-left:9px;color:var(--uf-blue);font-weight:800;
+  font-family:'Space Grotesk',sans-serif;font-size:.84rem;white-space:nowrap;
+}
+@media(max-width:700px){
+  .uf-overlap-bar-row{grid-template-columns:60px 1fr;gap:8px}
+  .uf-overlap-group{padding:12px}
+}
+
+/* ---------- Fund description banner (per-fund tab) ---------- */
+.uf-fund-banner{
+  display:flex;gap:16px;align-items:center;padding:18px 20px;border-radius:22px;
+  border:1px solid var(--uf-line);box-shadow:var(--uf-shadow);margin-bottom:20px;background:#fff;
+}
+.uf-fund-banner .badge{
+  width:56px;height:56px;border-radius:16px;flex-shrink:0;display:grid;place-items:center;
+  color:#fff;font-weight:800;font-family:'Space Grotesk',sans-serif;font-size:1rem;
+}
+.uf-fund-banner h2{margin:0 0 4px;color:var(--uf-blue);font-family:'Space Grotesk',sans-serif;font-size:1.3rem}
+.uf-fund-banner p{color:var(--uf-muted);margin:0}
+.uf-fund-banner .type{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--uf-cyan)}
+
+@media(max-width:1150px){
+  .uf-kpi-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+  .uf-hero-brand{flex-direction:column;align-items:flex-start;gap:14px}
+  .uf-kpi-grid{grid-template-columns:1fr}
+  .uf-tabs{position:static}
+  .uf-map{aspect-ratio:1/1.05;min-height:380px}
+  .uf-drawer{width:100%}
+  .uf-fund-banner{flex-direction:column;align-items:flex-start}
+}
